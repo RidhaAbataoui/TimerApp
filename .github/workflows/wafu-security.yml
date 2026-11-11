@@ -52,7 +52,7 @@ jobs:
           if [ "$PFA_REPORT_ONLY" = 'true' ]; then extra+=(--report-only); fi
           python3 "$RUNNER_TEMP/wafu.py" \
             --url "$PFA_URL"  --project "$PFA_PROJECT" --source . \
-            --mode INCREMENTAL --families sast secrets --no-ai-review --no-ai-guidance --presets 560cd0c9-b89c-49ef-934d-2eb1ef525011 --timeout 5100 \
+            --mode FULL --families sast secrets --ai-review --ai-guidance --presets 560cd0c9-b89c-49ef-934d-2eb1ef525011 --timeout 5100 \
             --state "$RUNNER_TEMP/wafu-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.json" \
             --reports wafu-reports "${extra[@]}"
       - name: Publish SARIF to GitHub code scanning
